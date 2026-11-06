@@ -12,7 +12,8 @@ import excl as X
 
 NIC = 2
 FARINA = "farina" in sys.argv[1:]  # add the Farina-Low singlet points (arXiv:1703.00912, Table 2)
-res = json.load(open("/ceph/cms/store/user/tvami/HSCP-Quirks/QuirkPheno/cards/nom/limits_singlet.json"))
+OUT = os.environ.get("QP_OUT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "out"))  # outputs
+res = json.load(open(OUT + "/cards/nom/limits_singlet.json"))
 FASER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "hepdata", "faser", "exclusion_limit_contours.yaml")
 
 

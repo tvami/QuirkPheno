@@ -11,7 +11,8 @@ import pstyle as P
 import excl as X
 
 TAG = sys.argv[1] if len(sys.argv) > 1 else "nom"
-res = json.load(open("/ceph/cms/store/user/tvami/HSCP-Quirks/QuirkPheno/cards/%s/limits.json" % TAG))
+OUT = os.environ.get("QP_OUT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "out"))  # outputs
+res = json.load(open(OUT + "/cards/%s/limits.json" % TAG))
 
 
 def crossing(ms, rs, thr):

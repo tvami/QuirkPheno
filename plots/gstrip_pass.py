@@ -10,7 +10,8 @@ import pstyle as P
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "recast"))
 import summarize as S
 
-B = "/ceph/cms/store/user/tvami/HSCP-Quirks/QuirkPheno/"
+OUT = os.environ.get("QP_OUT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "out"))  # outputs
+B = OUT + "/"
 LUMI = 101.0e3  # pb^-1
 d = yaml.safe_load(open(os.path.join(S.Q.HEPDATA, "figure_4_right.yaml")))
 edges = [float(v["low"]) for v in d["independent_variables"][0]["values"]] + [float(d["independent_variables"][0]["values"][-1]["high"])]

@@ -11,7 +11,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."
 import pstyle as P
 import summarize as S
 
-B = "/ceph/cms/store/user/tvami/HSCP-Quirks/QuirkPheno/"
+OUT = os.environ.get("QP_OUT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "out"))  # outputs
+B = OUT + "/"
 PUB = os.path.join(S.Q.HEPDATA, "ioniz", "AllCardsOnly")
 L = 101.0e3
 cy = json.load(open(os.path.join(S.Q.HERE, "card_yields.json")))

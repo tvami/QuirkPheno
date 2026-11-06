@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Transverse view of the gun quirk pair (m 200 GeV) through the CMS-like detector, all quirk steps."""
 import math
+import os
 import numpy as np
 import ROOT
 import uproot
 import pstyle as P
 
-D = "/ceph/cms/store/user/tvami/HSCP-Quirks/QuirkPheno/display/"
+OUT = os.environ.get("QP_OUT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "out"))  # outputs
+D = OUT + "/display/"
 RADII = [1.16, 1.29, 1.77, 2.95, 4.2, 7.4]  # tracker, ECAL, HCAL, solenoid, muon stations
 P.label("CMS-like detector, Geant4")
 for L in (30, 100, 300):

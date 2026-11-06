@@ -10,7 +10,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."
 import pstyle as P
 import summarize as S
 
-E = "/ceph/cms/store/user/tvami/HSCP-Quirks/QuirkPheno/emu/"
+OUT = os.environ.get("QP_OUT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "out"))  # outputs
+E = OUT + "/emu/"
 pts = {}
 for f in sorted(glob.glob(E + "quirk_m*_L*.npz")) + sorted(glob.glob(E + "quirkb_m*_L*.npz")):  # quirkb (bound filter) overrides
     m, L = map(float, re.search(r"_m(\d+)_L([\d.]+)\.npz", f).groups())
