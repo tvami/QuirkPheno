@@ -1,0 +1,192 @@
+# Generic CMS-like detector, written by make_cms_like.py (tk1.00_calo1.00_full_yoke)
+# lengths in cm; '+x0:v' / '+lam:v' / '+cm:v' / '+um:v' = thickness from the inner edge
+world 900 1150 G4_AIR
+checkOverlaps 1
+mix TkSupport 1.8 G4_C 0.55 G4_Al 0.15 G4_Cu 0.20 G4_KAPTON 0.10  # carbon fiber, cooling, cables
+mix TkServ 3.6 G4_C 0.55 G4_Al 0.15 G4_Cu 0.20 G4_KAPTON 0.10      # same, denser: cables and pipes in the TIB-TID gap
+mix MuonGas 0.00184 G4_Ar 0.837 G4_CARBON_DIOXIDE 0.163           # Ar/CO2 85/15 [D]
+mix CoilMix 2.81 G4_Al 0.86 G4_Cu 0.08 G4_Ti 0.03 G4_Nb 0.03       # Al-stabilized NbTi conductor and mandrel
+# beam pipe
+tube PIPE_VAC   G4_Galactic                     0.0000      2.1700 -1100.0000   1100.0000 det=PIPE
+tube PIPE       G4_Be                           2.1700    +cm:0.08 -300.0000    300.0000 det=PIPE
+tube PIPEFWD    G4_STAINLESS-STEEL              2.1700    +cm:0.15  300.1000   1100.0000 det=PIPE mirror
+# pixel barrel and forward disks [P]; support per layer tuned to about 1.2% X0
+tube PXB1       G4_Si                           2.9000     +um:285  -26.7000     26.7000 det=PXB layer=1 sens
+tube PXB1S      TkSupport                       2.9500 +x0:0.00900  -26.7000     26.7000 det=TKSUP layer=1
+tube PXB2       G4_Si                           6.8000     +um:285  -26.7000     26.7000 det=PXB layer=2 sens
+tube PXB2S      TkSupport                       6.8500 +x0:0.00900  -26.7000     26.7000 det=TKSUP layer=2
+tube PXB3       G4_Si                          10.9000     +um:285  -26.7000     26.7000 det=PXB layer=3 sens
+tube PXB3S      TkSupport                      10.9500 +x0:0.00900  -26.7000     26.7000 det=TKSUP layer=3
+tube PXB4       G4_Si                          16.0000     +um:285  -26.7000     26.7000 det=PXB layer=4 sens
+tube PXB4S      TkSupport                      16.0500 +x0:0.00900  -26.7000     26.7000 det=TKSUP layer=4
+tube PXF1       G4_Si                           4.5000     16.1000   29.1000     +um:285 det=PXF layer=1 sens mirror
+tube PXF1S      TkSupport                       4.5000     16.1000   29.1500 +x0:0.01200 det=TKSUP layer=1 mirror
+tube PXF2       G4_Si                           4.5000     16.1000   39.6000     +um:285 det=PXF layer=2 sens mirror
+tube PXF2S      TkSupport                       4.5000     16.1000   39.6500 +x0:0.01200 det=TKSUP layer=2 mirror
+tube PXF3       G4_Si                           4.5000     16.1000   51.6000     +um:285 det=PXF layer=3 sens mirror
+tube PXF3S      TkSupport                       4.5000     16.1000   51.6500 +x0:0.01200 det=TKSUP layer=3 mirror
+tube PIXSERV    TkSupport                       4.5000     17.0000   56.0000 +x0:0.10000 det=TKSUP mirror
+# strip tracker [D]; layers 1-2 of TIB and TOB are double sided (two sensors)
+tube TIB1       G4_Si                          25.5000     +um:640  -70.0000     70.0000 det=TIB layer=1 sens
+tube TIB1S      TkSupport                      25.6000 +x0:0.03000  -70.0000     70.0000 det=TKSUP layer=1
+tube TIB2       G4_Si                          33.9000     +um:640  -70.0000     70.0000 det=TIB layer=2 sens
+tube TIB2S      TkSupport                      34.0000 +x0:0.03000  -70.0000     70.0000 det=TKSUP layer=2
+tube TIB3       G4_Si                          41.8500     +um:320  -70.0000     70.0000 det=TIB layer=3 sens
+tube TIB3S      TkSupport                      41.9500 +x0:0.03000  -70.0000     70.0000 det=TKSUP layer=3
+tube TIB4       G4_Si                          49.8000     +um:320  -70.0000     70.0000 det=TIB layer=4 sens
+tube TIB4S      TkSupport                      49.9000 +x0:0.03000  -70.0000     70.0000 det=TKSUP layer=4
+tube TOB1       G4_Si                          60.8000    +um:1000 -109.0000    109.0000 det=TOB layer=1 sens
+tube TOB1S      TkSupport                      60.9500 +x0:0.02000 -109.0000    109.0000 det=TKSUP layer=1
+tube TOB2       G4_Si                          69.2000    +um:1000 -109.0000    109.0000 det=TOB layer=2 sens
+tube TOB2S      TkSupport                      69.3500 +x0:0.02000 -109.0000    109.0000 det=TKSUP layer=2
+tube TOB3       G4_Si                          78.0000     +um:500 -109.0000    109.0000 det=TOB layer=3 sens
+tube TOB3S      TkSupport                      78.1500 +x0:0.02000 -109.0000    109.0000 det=TKSUP layer=3
+tube TOB4       G4_Si                          86.8000     +um:500 -109.0000    109.0000 det=TOB layer=4 sens
+tube TOB4S      TkSupport                      86.9500 +x0:0.02000 -109.0000    109.0000 det=TKSUP layer=4
+tube TOB5       G4_Si                          96.5000     +um:500 -109.0000    109.0000 det=TOB layer=5 sens
+tube TOB5S      TkSupport                      96.6500 +x0:0.02000 -109.0000    109.0000 det=TKSUP layer=5
+tube TOB6       G4_Si                         108.0000     +um:500 -109.0000    109.0000 det=TOB layer=6 sens
+tube TOB6S      TkSupport                     108.1500 +x0:0.02000 -109.0000    109.0000 det=TKSUP layer=6
+tube TKTUBE     TkSupport                     116.0000 +x0:0.02000 -280.0000    280.0000 det=TKSUP
+tube TID1       G4_Si                          20.0000     50.0000   80.0000     +um:320 det=TID layer=1 sens mirror
+tube TID1S      TkSupport                      20.0000     50.0000   80.1000 +x0:0.03000 det=TKSUP layer=1 mirror
+tube TID2       G4_Si                          20.0000     50.0000   85.0000     +um:320 det=TID layer=2 sens mirror
+tube TID2S      TkSupport                      20.0000     50.0000   85.1000 +x0:0.03000 det=TKSUP layer=2 mirror
+tube TID3       G4_Si                          20.0000     50.0000   90.0000     +um:320 det=TID layer=3 sens mirror
+tube TID3S      TkSupport                      20.0000     50.0000   90.1000 +x0:0.03000 det=TKSUP layer=3 mirror
+tube TEC1       G4_Si                          22.0000    113.5000  127.7500     +um:400 det=TEC layer=1 sens mirror
+tube TEC1S      TkSupport                      22.0000    113.5000  127.8500 +x0:0.04000 det=TKSUP layer=1 mirror
+tube TEC2       G4_Si                          22.0000    113.5000  141.7500     +um:400 det=TEC layer=2 sens mirror
+tube TEC2S      TkSupport                      22.0000    113.5000  141.8500 +x0:0.04000 det=TKSUP layer=2 mirror
+tube TEC3       G4_Si                          22.0000    113.5000  155.7500     +um:400 det=TEC layer=3 sens mirror
+tube TEC3S      TkSupport                      22.0000    113.5000  155.8500 +x0:0.04000 det=TKSUP layer=3 mirror
+tube TEC4       G4_Si                          22.0000    113.5000  169.7500     +um:400 det=TEC layer=4 sens mirror
+tube TEC4S      TkSupport                      22.0000    113.5000  169.8500 +x0:0.04000 det=TKSUP layer=4 mirror
+tube TEC5       G4_Si                          22.0000    113.5000  183.7500     +um:400 det=TEC layer=5 sens mirror
+tube TEC5S      TkSupport                      22.0000    113.5000  183.8500 +x0:0.04000 det=TKSUP layer=5 mirror
+tube TEC6       G4_Si                          22.0000    113.5000  202.2500     +um:400 det=TEC layer=6 sens mirror
+tube TEC6S      TkSupport                      22.0000    113.5000  202.3500 +x0:0.04000 det=TKSUP layer=6 mirror
+tube TEC7       G4_Si                          22.0000    113.5000  222.7500     +um:400 det=TEC layer=7 sens mirror
+tube TEC7S      TkSupport                      22.0000    113.5000  222.8500 +x0:0.04000 det=TKSUP layer=7 mirror
+tube TEC8       G4_Si                          22.0000    113.5000  245.2500     +um:400 det=TEC layer=8 sens mirror
+tube TEC8S      TkSupport                      22.0000    113.5000  245.3500 +x0:0.04000 det=TKSUP layer=8 mirror
+tube TEC9       G4_Si                          22.0000    113.5000  269.7500     +um:400 det=TEC layer=9 sens mirror
+tube TEC9S      TkSupport                      22.0000    113.5000  269.8500 +x0:0.04000 det=TKSUP layer=9 mirror
+tube TIBSERV    TkServ                         20.0000     56.0000   70.5000 +x0:0.60000 det=TKSUP mirror
+tube TOBSERV    TkSupport                      57.0000    113.5000  111.0000 +x0:0.30000 det=TKSUP mirror
+# ECAL [D]
+tube EB         G4_PbWO4                      129.0000  +cm:23.000 -290.0000    290.0000 det=EB sens calo
+tube ESPB1      G4_Pb                          45.0000    123.0000  298.0000       +x0:2 det=ES layer=1 calo mirror
+tube ESSI1      G4_Si                          45.0000    123.0000  299.3000     +um:320 det=ES layer=1 sens calo mirror
+tube ESPB2      G4_Pb                          45.0000    123.0000  299.5000       +x0:1 det=ES layer=2 calo mirror
+tube ESSI2      G4_Si                          45.0000    123.0000  300.2000     +um:320 det=ES layer=2 sens calo mirror
+tube EE         G4_PbWO4                       32.0000    171.0000  317.0000  +cm:22.000 det=EE sens calo mirror
+# HCAL [D]: 3.7 mm scintillator layers; HB brass 15 x 5.5 cm between steel plates of 4 and 7.5 cm
+tube HBF        G4_STAINLESS-STEEL            177.0000   +cm:4.000 -390.0000    390.0000 det=HB calo
+tube HBS0       G4_PLASTIC_SC_VINYLTOLUENE    181.1000    +cm:0.37 -390.0000    390.0000 det=HB layer=1 sens calo
+tube HBA0       G4_BRASS                      182.0000   +cm:5.500 -390.0000    390.0000 det=HB calo
+tube HBS1       G4_PLASTIC_SC_VINYLTOLUENE    187.5500    +cm:0.37 -390.0000    390.0000 det=HB layer=2 sens calo
+tube HBA1       G4_BRASS                      188.4500   +cm:5.500 -390.0000    390.0000 det=HB calo
+tube HBS2       G4_PLASTIC_SC_VINYLTOLUENE    194.0000    +cm:0.37 -390.0000    390.0000 det=HB layer=3 sens calo
+tube HBA2       G4_BRASS                      194.9000   +cm:5.500 -390.0000    390.0000 det=HB calo
+tube HBS3       G4_PLASTIC_SC_VINYLTOLUENE    200.4500    +cm:0.37 -390.0000    390.0000 det=HB layer=4 sens calo
+tube HBA3       G4_BRASS                      201.3500   +cm:5.500 -390.0000    390.0000 det=HB calo
+tube HBS4       G4_PLASTIC_SC_VINYLTOLUENE    206.9000    +cm:0.37 -390.0000    390.0000 det=HB layer=5 sens calo
+tube HBA4       G4_BRASS                      207.8000   +cm:5.500 -390.0000    390.0000 det=HB calo
+tube HBS5       G4_PLASTIC_SC_VINYLTOLUENE    213.3500    +cm:0.37 -390.0000    390.0000 det=HB layer=6 sens calo
+tube HBA5       G4_BRASS                      214.2500   +cm:5.500 -390.0000    390.0000 det=HB calo
+tube HBS6       G4_PLASTIC_SC_VINYLTOLUENE    219.8000    +cm:0.37 -390.0000    390.0000 det=HB layer=7 sens calo
+tube HBA6       G4_BRASS                      220.7000   +cm:5.500 -390.0000    390.0000 det=HB calo
+tube HBS7       G4_PLASTIC_SC_VINYLTOLUENE    226.2500    +cm:0.37 -390.0000    390.0000 det=HB layer=8 sens calo
+tube HBA7       G4_BRASS                      227.1500   +cm:5.500 -390.0000    390.0000 det=HB calo
+tube HBS8       G4_PLASTIC_SC_VINYLTOLUENE    232.7000    +cm:0.37 -390.0000    390.0000 det=HB layer=9 sens calo
+tube HBA8       G4_BRASS                      233.6000   +cm:5.500 -390.0000    390.0000 det=HB calo
+tube HBS9       G4_PLASTIC_SC_VINYLTOLUENE    239.1500    +cm:0.37 -390.0000    390.0000 det=HB layer=10 sens calo
+tube HBA9       G4_BRASS                      240.0500   +cm:5.500 -390.0000    390.0000 det=HB calo
+tube HBS10      G4_PLASTIC_SC_VINYLTOLUENE    245.6000    +cm:0.37 -390.0000    390.0000 det=HB layer=11 sens calo
+tube HBA10      G4_BRASS                      246.5000   +cm:5.500 -390.0000    390.0000 det=HB calo
+tube HBS11      G4_PLASTIC_SC_VINYLTOLUENE    252.0500    +cm:0.37 -390.0000    390.0000 det=HB layer=12 sens calo
+tube HBA11      G4_BRASS                      252.9500   +cm:5.500 -390.0000    390.0000 det=HB calo
+tube HBS12      G4_PLASTIC_SC_VINYLTOLUENE    258.5000    +cm:0.37 -390.0000    390.0000 det=HB layer=13 sens calo
+tube HBA12      G4_BRASS                      259.4000   +cm:5.500 -390.0000    390.0000 det=HB calo
+tube HBS13      G4_PLASTIC_SC_VINYLTOLUENE    264.9500    +cm:0.37 -390.0000    390.0000 det=HB layer=14 sens calo
+tube HBA13      G4_BRASS                      265.8500   +cm:5.500 -390.0000    390.0000 det=HB calo
+tube HBS14      G4_PLASTIC_SC_VINYLTOLUENE    271.4000    +cm:0.37 -390.0000    390.0000 det=HB layer=15 sens calo
+tube HBA14      G4_BRASS                      272.3000   +cm:5.500 -390.0000    390.0000 det=HB calo
+tube HBS15      G4_PLASTIC_SC_VINYLTOLUENE    277.8500    +cm:0.37 -390.0000    390.0000 det=HB layer=16 sens calo
+tube HBB        G4_STAINLESS-STEEL            278.7500   +cm:7.500 -390.0000    390.0000 det=HB calo
+tube HES0       G4_PLASTIC_SC_VINYLTOLUENE     40.0000    295.0000  391.0000    +cm:0.37 det=HE layer=1 sens calo mirror
+tube HEA0       G4_BRASS                       40.0000    295.0000  391.6000   +cm:7.900 det=HE calo mirror
+tube HES1       G4_PLASTIC_SC_VINYLTOLUENE     40.0000    295.0000  399.6000    +cm:0.37 det=HE layer=2 sens calo mirror
+tube HEA1       G4_BRASS                       40.0000    295.0000  400.2000   +cm:7.900 det=HE calo mirror
+tube HES2       G4_PLASTIC_SC_VINYLTOLUENE     40.0000    295.0000  408.2000    +cm:0.37 det=HE layer=3 sens calo mirror
+tube HEA2       G4_BRASS                       40.0000    295.0000  408.8000   +cm:7.900 det=HE calo mirror
+tube HES3       G4_PLASTIC_SC_VINYLTOLUENE     40.0000    295.0000  416.8000    +cm:0.37 det=HE layer=4 sens calo mirror
+tube HEA3       G4_BRASS                       40.0000    295.0000  417.4000   +cm:7.900 det=HE calo mirror
+tube HES4       G4_PLASTIC_SC_VINYLTOLUENE     40.0000    295.0000  425.4000    +cm:0.37 det=HE layer=5 sens calo mirror
+tube HEA4       G4_BRASS                       40.0000    295.0000  426.0000   +cm:7.900 det=HE calo mirror
+tube HES5       G4_PLASTIC_SC_VINYLTOLUENE     40.0000    295.0000  434.0000    +cm:0.37 det=HE layer=6 sens calo mirror
+tube HEA5       G4_BRASS                       40.0000    295.0000  434.6000   +cm:7.900 det=HE calo mirror
+tube HES6       G4_PLASTIC_SC_VINYLTOLUENE     40.0000    295.0000  442.6000    +cm:0.37 det=HE layer=7 sens calo mirror
+tube HEA6       G4_BRASS                       40.0000    295.0000  443.2000   +cm:7.900 det=HE calo mirror
+tube HES7       G4_PLASTIC_SC_VINYLTOLUENE     40.0000    295.0000  451.2000    +cm:0.37 det=HE layer=8 sens calo mirror
+tube HEA7       G4_BRASS                       40.0000    295.0000  451.8000   +cm:7.900 det=HE calo mirror
+tube HES8       G4_PLASTIC_SC_VINYLTOLUENE     40.0000    295.0000  459.8000    +cm:0.37 det=HE layer=9 sens calo mirror
+tube HEA8       G4_BRASS                       40.0000    295.0000  460.4000   +cm:7.900 det=HE calo mirror
+tube HES9       G4_PLASTIC_SC_VINYLTOLUENE     40.0000    295.0000  468.4000    +cm:0.37 det=HE layer=10 sens calo mirror
+tube HEA9       G4_BRASS                       40.0000    295.0000  469.0000   +cm:7.900 det=HE calo mirror
+tube HES10      G4_PLASTIC_SC_VINYLTOLUENE     40.0000    295.0000  477.0000    +cm:0.37 det=HE layer=11 sens calo mirror
+tube HEA10      G4_BRASS                       40.0000    295.0000  477.6000   +cm:7.900 det=HE calo mirror
+tube HES11      G4_PLASTIC_SC_VINYLTOLUENE     40.0000    295.0000  485.6000    +cm:0.37 det=HE layer=12 sens calo mirror
+tube HEA11      G4_BRASS                       40.0000    295.0000  486.2000   +cm:7.900 det=HE calo mirror
+tube HES12      G4_PLASTIC_SC_VINYLTOLUENE     40.0000    295.0000  494.2000    +cm:0.37 det=HE layer=13 sens calo mirror
+tube HEA12      G4_BRASS                       40.0000    295.0000  494.8000   +cm:7.900 det=HE calo mirror
+tube HES13      G4_PLASTIC_SC_VINYLTOLUENE     40.0000    295.0000  502.8000    +cm:0.37 det=HE layer=14 sens calo mirror
+tube HEA13      G4_BRASS                       40.0000    295.0000  503.4000   +cm:7.900 det=HE calo mirror
+tube HES14      G4_PLASTIC_SC_VINYLTOLUENE     40.0000    295.0000  511.4000    +cm:0.37 det=HE layer=15 sens calo mirror
+tube HEA14      G4_BRASS                       40.0000    295.0000  512.0000   +cm:7.900 det=HE calo mirror
+tube HES15      G4_PLASTIC_SC_VINYLTOLUENE     40.0000    295.0000  520.0000    +cm:0.37 det=HE layer=16 sens calo mirror
+tube HEA15      G4_BRASS                       40.0000    295.0000  520.6000   +cm:7.900 det=HE calo mirror
+tube HES16      G4_PLASTIC_SC_VINYLTOLUENE     40.0000    295.0000  528.6000    +cm:0.37 det=HE layer=17 sens calo mirror
+tube HEA16      G4_BRASS                       40.0000    295.0000  529.2000   +cm:7.900 det=HE calo mirror
+# solenoid [D]
+tube CRYO_IN    G4_STAINLESS-STEEL            297.0000       +cm:2 -625.0000    625.0000 det=COIL
+tube COIL       CoilMix                       318.0000      +cm:31 -625.0000    625.0000 det=COIL
+tube CRYO_OUT   G4_STAINLESS-STEEL            375.0000       +cm:3 -625.0000    625.0000 det=COIL
+# HO, barrel yoke (iron 30 + 63 + 63 cm) and muon stations MB1-4, two gas layers each; approximate radii
+tube HO0        G4_PLASTIC_SC_VINYLTOLUENE    382.0000       +cm:1 -126.0000    126.0000 det=HO layer=1 sens calo
+tube TC         G4_Fe                         384.0000    +cm:19.5 -126.0000    126.0000 det=HO calo
+tube HO1        G4_PLASTIC_SC_VINYLTOLUENE    407.0000       +cm:1 -635.0000    635.0000 det=HO layer=2 sens calo
+tube MB10       MuonGas                       420.0000       +cm:2 -635.0000    635.0000 det=MB layer=1 sens
+tube MB11       MuonGas                       440.0000       +cm:2 -635.0000    635.0000 det=MB layer=1 sens
+tube MB20       MuonGas                       500.0000       +cm:2 -635.0000    635.0000 det=MB layer=2 sens
+tube MB21       MuonGas                       520.0000       +cm:2 -635.0000    635.0000 det=MB layer=2 sens
+tube MB30       MuonGas                       610.0000       +cm:2 -635.0000    635.0000 det=MB layer=3 sens
+tube MB31       MuonGas                       630.0000       +cm:2 -635.0000    635.0000 det=MB layer=3 sens
+tube MB40       MuonGas                       720.0000       +cm:2 -635.0000    635.0000 det=MB layer=4 sens
+tube MB41       MuonGas                       740.0000       +cm:2 -635.0000    635.0000 det=MB layer=4 sens
+tube YB1        G4_Fe                         460.0000    +cm:30.0 -635.0000    635.0000 det=YOKE layer=1
+tube YB2        G4_Fe                         540.0000    +cm:63.0 -635.0000    635.0000 det=YOKE layer=2
+tube YB3        G4_Fe                         650.0000    +cm:63.0 -635.0000    635.0000 det=YOKE layer=3
+# endcap muon stations ME1-4 and yoke disks YE1-3 (60, 60, 25 cm, r > 1 m); approximate positions
+tube ME11       MuonGas                       100.0000    275.0000  585.0000       +cm:2 det=ME layer=1 sens mirror
+tube ME12       MuonGas                       275.0000    700.0000  690.0000       +cm:2 det=ME layer=1 sens mirror
+tube YE1        G4_Fe                         100.0000    700.0000  730.0000      +cm:60 det=YOKE layer=4 mirror
+tube ME2        MuonGas                       140.0000    700.0000  820.0000       +cm:2 det=ME layer=2 sens mirror
+tube YE2        G4_Fe                         100.0000    700.0000  840.0000      +cm:60 det=YOKE layer=5 mirror
+tube ME3        MuonGas                       160.0000    700.0000  920.0000       +cm:2 det=ME layer=3 sens mirror
+tube YE3        G4_Fe                         100.0000    700.0000  945.0000      +cm:25 det=YOKE layer=6 mirror
+tube ME4        MuonGas                       160.0000    700.0000 1010.0000       +cm:2 det=ME layer=4 sens mirror
+# field: Bz[T] rmin rmax |z|min |z|max
+field 3.8 0 315 0 600
+field -1.8 460.0 490.0 0 635
+field -1.8 540.0 603.0 0 635
+field -1.8 650.0 713.0 0 635
+# boundaries: name r |z|
+boundary PIX 17 52
+boundary TRK 115 280
+boundary ECALIN 129 315
+boundary HCALIN 177 390
+boundary COIL 297 600
+boundary MUON 420 690
+boundary YOKEOUT 715 1000

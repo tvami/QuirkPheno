@@ -1,0 +1,4 @@
+quirkcore is derived from atlas/athena Simulation/G4Extensions/Quirks, Copyright (C) 2002-2025 CERN
+for the benefit of the ATLAS collaboration (Apache-2.0).
+QuirkTransportation is based on the Geant4 G4Transportation (Geant4 Software License,
+http://cern.ch/geant4/license).
