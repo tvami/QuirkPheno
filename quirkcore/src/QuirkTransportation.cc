@@ -1,5 +1,4 @@
-// Derived from atlas/athena Simulation/G4Extensions/Quirks (Copyright (C) 2002-2024 CERN for the
-// benefit of the ATLAS collaboration) and cms-sw/cmssw, both Apache-2.0; modified.
+// Based on G4Transportation; Geant4 Software License, http://cern.ch/geant4/license
 #include "quirkcore/QuirkTransportation.h"
 #include "quirkcore/QuirkTrackStatus.h"
 #include "quirkcore/QuirkHyperbolaStepper.h"

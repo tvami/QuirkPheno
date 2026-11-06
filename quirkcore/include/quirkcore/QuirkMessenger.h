@@ -1,5 +1,3 @@
-// Derived from atlas/athena Simulation/G4Extensions/Quirks (Copyright (C) 2002-2024 CERN for the
-// benefit of the ATLAS collaboration) and cms-sw/cmssw, both Apache-2.0; modified.
 #ifndef QUIRKCORE_QuirkMessenger_H
 #define QUIRKCORE_QuirkMessenger_H
 
