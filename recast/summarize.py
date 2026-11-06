@@ -60,22 +60,6 @@ if __name__ == "__main__":
         print(r, np.round(v, 4), "sum %.4f" % v.sum())
 
 
-WINDOWS = {400: (330, 460), 800: (640, 970), 1000: (780, 1260), 1400: (1050, 1900), 1800: (1300, 2590), 2200: (1560, 3170),
-           2600: (1800, 3590)}  # tau' 1e mass windows (App. Fig. 9)
-
-
-def mass_eff(fn, window, trig="trig", gmin=0.22, ptmin=70.):
-    """Mass method SR3 efficiency: preselection, pT > 70, Gstrip > 0.22, reconstructed mass in the window."""
-    import json, os
-    cal = json.load(open(os.path.join(Q.HERE, "ih_calib.json")))
-    d, k = load(fn)
-    x = d["data"]
-    ih, p = x[:, k["c_ih"]], x[:, k["c_p"]]
-    m = np.where(ih > cal["C"], p * np.sqrt(np.clip(ih - cal["C"], 0, None) / cal["K"]), -1.)
-    sel = (x[:, k["depth"]] >= NSTEP) & (x[:, k["c_pt"]] > ptmin) & (x[:, k["c_gstrip"]] > gmin) & (m > window[0]) & (m < window[1])
-    return float((x[:, k[trig]] * sel).sum() / float(d["ngen"]))
-
-
 def neff(fn, trig="trig", ptmin=200.):
     """Effective number of MC events in the signal region, (sum w)^2 / sum w^2."""
     d, k = load(fn)
