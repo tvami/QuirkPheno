@@ -1,4 +1,0 @@
-quirkcore is the quirk transport of Athena Simulation/G4Extensions/Quirks
-(atlas/athena, commit a312d68, Apache-2.0, Copyright (C) 2002-2024 CERN for the
-benefit of the ATLAS collaboration), as ported to CMSSW (cms-sw/cmssw, commit
-6794fe8520d, Apache-2.0), adapted to run without either framework.
