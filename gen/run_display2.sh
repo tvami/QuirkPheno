@@ -1,6 +1,6 @@
 #!/bin/bash
-# Oct13 display gun pair (m 200 GeV) through the CMS-like detector, all steps
-S=$(cd $(dirname $0)/..; pwd); O=/ceph/cms/store/user/tvami/HSCP-Quirks/QuirkPheno/display
+# display gun pair (m 200 GeV) through the CMS-like detector, all steps
+S=$(cd $(dirname $0)/..; pwd); O=${QP_OUT:-$S/out}/display; mkdir -p $O
 export LD_LIBRARY_PATH=$S/build/quirkcore:$LD_LIBRARY_PATH
 for L in 30 100 300; do
 cat > $O/ed_L$L.mac <<EOM

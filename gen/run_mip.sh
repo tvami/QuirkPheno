@@ -1,6 +1,6 @@
 #!/bin/bash
 # MIP reference: charge-1 10 GeV "quirks" (Lambda 1 eV, free) from a gun, p = 700 GeV (beta gamma 70), several eta
-S=$(cd $(dirname $0)/..; pwd); O=/ceph/cms/store/user/tvami/HSCP-Quirks/QuirkPheno/mip
+S=$(cd $(dirname $0)/..; pwd); O=${QP_OUT:-$S/out}/mip; mkdir -p $O
 export LD_LIBRARY_PATH=$S/build/quirkcore:$LD_LIBRARY_PATH
 for eta in 0.05 0.3 0.6 0.9; do
 read a b c d e f <<< $(python3 -c "
