@@ -23,7 +23,7 @@ if(QSIM_WITH_HEPMC3)
   find_package(HepMC3 REQUIRED)
 endif()
 if(QSIM_WITH_PYTHIA8)
-  # pythia8-config, as in LCG and CMSSW externals
+  # pythia8-config, as in LCG
   find_program(PYTHIA8_CONFIG pythia8-config REQUIRED)
   execute_process(COMMAND ${PYTHIA8_CONFIG} --includedir OUTPUT_VARIABLE PYTHIA8_INC OUTPUT_STRIP_TRAILING_WHITESPACE)
   execute_process(COMMAND ${PYTHIA8_CONFIG} --libdir OUTPUT_VARIABLE PYTHIA8_LIBDIR OUTPUT_STRIP_TRAILING_WHITESPACE)
