@@ -10,6 +10,7 @@ CMS.SetCmsText("")  # pheno study: no experiment label
 COLORS = [ROOT.kAzure + 1, ROOT.kOrange + 7, ROOT.kGreen + 2, ROOT.kRed + 1, ROOT.kViolet + 1, ROOT.kGray + 2]
 keep = []  # protect ROOT objects from GC
 OUT = __import__("os").path.join(__import__("os").path.dirname(__import__("os").path.abspath(__file__)), "figs")
+__import__("os").makedirs(OUT, exist_ok=True)
 
 
 def label(text="Geant4 11.4.2", energy=None):
