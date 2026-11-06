@@ -3,23 +3,24 @@
 import glob
 import os
 import numpy as np
-import qreco as Q
+import qreco
 
 OUT = os.environ.get("QP_OUT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "out"))  # outputs
-D = os.path.join(OUT, "mip")
+MIPDIR = os.path.join(OUT, "mip")
 rng = np.random.default_rng(11)
-meta, thick = Q.load_meta(D + "/mip_eta0.05_meta.json")
+meta, thick = qreco.load_meta(MIPDIR + "/mip_eta0.05_meta.json")
 vals = {}
-for f in sorted(glob.glob(D + "/mip_eta*.root")):
-    for a in Q.read_events(f):
-        for i in range(len(a["evt"])):
-            det, vol, dE, ln = a["h_det"][i], a["h_vol"][i], a["h_dE"][i], a["h_len"][i]
-            m = np.isin(det, Q.TRACKER) & (ln > 0)
-            for v, e, l, dd in zip(vol[m], dE[m], ln[m], det[m]):
-                x = e / (l / 10.)  # MeV/cm
-                x *= 1 + rng.normal(0., Q.NOISE["pix" if dd in Q.PIXEL else "strip"])
-                vals.setdefault(int(thick[v]), []).append(x)
-out = {"t%d" % k: np.sort(np.array(v)) for k, v in vals.items()}
-np.savez(Q.HERE + "/mip_templates_%s.npz" % Q.TAG, **out)
-for k, v in sorted(out.items()):
-    print(k, len(v), "median %.3f MeV/cm  q10 %.3f q90 %.3f" % (np.median(v), np.quantile(v, .1), np.quantile(v, .9)))
+for fname in sorted(glob.glob(MIPDIR + "/mip_eta*.root")):
+    for arrays in qreco.read_events(fname):
+        for ievt in range(len(arrays["evt"])):
+            det, vol, dE, ln = arrays["h_det"][ievt], arrays["h_vol"][ievt], arrays["h_dE"][ievt], arrays["h_len"][ievt]
+            mask = np.isin(det, qreco.TRACKER) & (ln > 0)
+            for vid, edep, length, dd in zip(vol[mask], dE[mask], ln[mask], det[mask]):
+                dedx = edep / (length / 10.)  # MeV/cm
+                dedx *= 1 + rng.normal(0., qreco.NOISE["pix" if dd in qreco.PIXEL else "strip"])
+                vals.setdefault(int(thick[vid]), []).append(dedx)
+out = {"t%d" % key: np.sort(np.array(tmpl)) for key, tmpl in vals.items()}
+np.savez(qreco.HERE + "/mip_templates_%s.npz" % qreco.TAG, **out)
+for key, tmpl in sorted(out.items()):
+    print(key, len(tmpl), "median %.3f MeV/cm  q10 %.3f q90 %.3f"
+          % (np.median(tmpl), np.quantile(tmpl, .1), np.quantile(tmpl, .9)))

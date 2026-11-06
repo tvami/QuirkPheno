@@ -1,11 +1,11 @@
 #!/bin/bash
 # emu_all.sh <model> <mass list> [lambda list] : emulate every point (patterns over seeds)
-M=$1; MASSES=$2; LAMS=${3:-1}
-B=${QP_OUT:-$(cd $(dirname $0)/..; pwd)/out}; cd $(dirname $0)
-for m in $MASSES; do for L in $LAMS; do
-  D=$B/$M; P="${M}_m${m}_L${L}_s*"
-  [ $M != taup ] && D=$D/flat  # linked by finalize.sh
-  O=$B/emu/${M}_m${m}_L${L}.npz
-  if [ -f $O ] && [ -z "$(find -L $D -name "${P}.root" -newer $O)" ]; then continue; fi  # up to date
-  python3 emulate.py $D "$P" $O
+MODEL=$1; MASSES=$2; LAMS=${3:-1}
+OUTDIR=${QP_OUT:-$(cd $(dirname $0)/..; pwd)/out}; cd $(dirname $0)
+for mass in $MASSES; do for lam in $LAMS; do
+  simdir=$OUTDIR/$MODEL; pattern="${MODEL}_m${mass}_L${lam}_s*"
+  [ $MODEL != taup ] && simdir=$simdir/flat  # linked by finalize.sh
+  emu=$OUTDIR/emu/${MODEL}_m${mass}_L${lam}.npz
+  if [ -f $emu ] && [ -z "$(find -L $simdir -name "${pattern}.root" -newer $emu)" ]; then continue; fi  # up to date
+  python3 emulate.py $simdir "$pattern" $emu
 done; done
