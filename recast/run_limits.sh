@@ -1,8 +1,8 @@
 #!/bin/bash
 # run_limits.sh <model> <m1,m2,..> <L1,L2,..> [tag] : cards at sigma_LO and asymptotic limits (r = sigma95 / sigma_LO)
-source /home/users/tvami/HSCP-Quirks/QuirkPheno/ext/env_combine.sh
+source $(cd $(dirname $0)/..; pwd)/ext/env_combine.sh
 M=$1; MASSES=${2//,/ }; LAMS=${3//,/ }; TAG=${4:-nom}  # comma-separated lists
-cd $(dirname $0); B=/ceph/cms/store/user/tvami/HSCP-Quirks/QuirkPheno; O=$B/cards/$TAG; mkdir -p $O
+cd $(dirname $0); B=${QP_OUT:-$(cd ..; pwd)/out}; O=$B/cards/$TAG; mkdir -p $O
 for m in $MASSES; do for L in $LAMS; do
   n=${M}_m${m}_L${L}; E=$B/emu/$n.npz; [ $TAG != nom ] && E=$B/emu/$TAG/$n.npz
   [ -f $E ] || continue

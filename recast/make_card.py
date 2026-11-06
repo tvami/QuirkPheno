@@ -10,7 +10,7 @@ import ROOT
 import summarize as S
 
 ROOT.gSystem.Load("libHiggsAnalysisCombinedLimit")
-D = "/home/users/tvami/HSCP-Quirks/QuirkPheno/hepdata/original/ioniz/AllCardsOnly/"
+D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "hepdata", "original", "ioniz", "AllCardsOnly") + "/"
 REF = "Signal_tauPrime1e-1000"
 LUMI = 101.0e3  # pb^-1
 SIG_SYST = 0.15  # emulation closure on tau' 1e

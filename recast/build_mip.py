@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """MIP dE/dx templates per sensor thickness from the 10 GeV pion-mass gun (mip_eta*.root), noise added."""
 import glob
+import os
 import numpy as np
 import qreco as Q
 
-D = "/ceph/cms/store/user/tvami/HSCP-Quirks/QuirkPheno/mip"
+OUT = os.environ.get("QP_OUT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "out"))  # outputs
+D = os.path.join(OUT, "mip")
 rng = np.random.default_rng(11)
 meta, thick = Q.load_meta(D + "/mip_eta0.05_meta.json")
 vals = {}

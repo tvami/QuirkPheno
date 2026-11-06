@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Per-bin signal yields of the published tau' 1e ionization cards + sigma_ref = sigma95(Fig. 7) / r_obs."""
-import json, re, yaml, ROOT
+import json, os, re, yaml, ROOT
 ROOT.gSystem.Load("libHiggsAnalysisCombinedLimit")
-D = "/home/users/tvami/HSCP-Quirks/QuirkPheno/hepdata/original/"
+D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "hepdata", "original") + "/"
 f7 = yaml.safe_load(open(D + "figure_7_left.yaml"))
 ms = [round(1000 * float(v["value"])) for v in f7["independent_variables"][0]["values"]]
 s95 = dict(zip(ms, [float(v["value"]) for v in f7["dependent_variables"][1]["values"]]))

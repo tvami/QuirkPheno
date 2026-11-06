@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Collect quirk limits: r = sigma95 / sigma_LO (observed, expected, +-1 sigma) per method and the best expected."""
 import glob, json, os, re, sys
-O = "/ceph/cms/store/user/tvami/HSCP-Quirks/QuirkPheno/cards/" + (sys.argv[1] if len(sys.argv) > 1 else "nom")
+OUT = os.environ.get("QP_OUT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "out"))  # outputs
+O = os.path.join(OUT, "cards", sys.argv[1] if len(sys.argv) > 1 else "nom")
 FAM = sys.argv[2] if len(sys.argv) > 2 else "doublet"
 NEFF_MIN = 3.  # minimum effective MC events in the signal region
 MODELS = {"doublet": ("quirkb", "quirk"), "singlet": ("quirksb", "quirks")}[FAM]  # bound-filtered sample first
