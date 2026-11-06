@@ -1,4 +1,3 @@
-// Copyright (C) 2002-2017 CERN for the benefit of the ATLAS collaboration
 #ifndef QUIRKCORE_QuirkHyperbolaStepper_H
 #define QUIRKCORE_QuirkHyperbolaStepper_H
 

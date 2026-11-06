@@ -1,4 +1,3 @@
-// Copyright (C) 2002-2025 CERN for the benefit of the ATLAS collaboration
 #ifndef QUIRKCORE_QuirkPhysics_H
 #define QUIRKCORE_QuirkPhysics_H
 

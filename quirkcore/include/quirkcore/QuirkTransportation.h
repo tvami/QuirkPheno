@@ -1,4 +1,3 @@
-// Based on G4Transportation; Geant4 Software License, http://cern.ch/geant4/license
 #ifndef QUIRKCORE_QuirkTransportation_H
 #define QUIRKCORE_QuirkTransportation_H
 

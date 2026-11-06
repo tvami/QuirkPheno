@@ -1,4 +1,3 @@
-// Based on G4Transportation; Geant4 Software License, http://cern.ch/geant4/license
 #include "quirkcore/QuirkTransportation.h"
 #include "quirkcore/QuirkTrackStatus.h"
 #include "quirkcore/QuirkHyperbolaStepper.h"

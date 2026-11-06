@@ -1,4 +1,3 @@
-// Copyright (C) 2002-2024 CERN for the benefit of the ATLAS collaboration
 #include "quirkcore/Quirk.h"
 
 Quirk::Quirk(const G4String& name, G4double mass, G4double charge, G4int pdg)

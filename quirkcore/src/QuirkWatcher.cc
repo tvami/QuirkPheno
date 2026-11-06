@@ -1,4 +1,3 @@
-// Copyright (C) 2002-2017 CERN for the benefit of the ATLAS collaboration
 #include "quirkcore/QuirkWatcher.h"
 #include "quirkcore/QuirkTrackStatus.h"
 #include "quirkcore/QuirkStringStore.h"
