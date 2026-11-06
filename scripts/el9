@@ -3,5 +3,5 @@
 ENV="source $(cd $(dirname $0); pwd)/env_lcg.sh;"; [ "$1" == -b ] && { ENV=""; shift; }
 CMD="$ENV cd $PWD; $*"
 IMG=${QP_EL9_IMAGE:-/cvmfs/singularity.opensciencegrid.org/htc/rocky:9}
-BIND="-B /cvmfs -B $HOME"; [ -d /ceph ] && BIND="$BIND -B /ceph"
+BIND="-B /cvmfs -B $HOME"; [ -n "$QP_OUT" ] && BIND="$BIND -B $QP_OUT"
 if grep -q 'release 9' /etc/redhat-release 2>/dev/null; then bash -c "$CMD"; else apptainer exec $BIND $IMG bash -c "$CMD"; fi
