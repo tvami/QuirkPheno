@@ -1,5 +1,4 @@
-! Quirk Drell-Yan pairs as the CMSSW fragment Quirk_E_M_<m>_Lambda_<L>_TuneCP5_13p6TeV_pythia8_cff.py:
-! the fourth-generation lepton (PDG 17) through gamma*/Z (process 141, Zprime:gmZmode = 4).
+! Quirk Drell-Yan pairs: the fourth-generation lepton (PDG 17) through gamma*/Z (process 141, Zprime:gmZmode = 4).
 ! The mass lines (17:m0, 32:mMin = 2m + 1 GeV, no decay) are added by quirksim/quirkgen.
 Beams:eCM = 13000.
 ! pythia8CommonSettings
