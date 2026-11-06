@@ -7,65 +7,68 @@ import sys
 import numpy as np
 import ROOT
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "recast"))
-import pstyle as P
-import summarize as S
+import pstyle
+import summarize
 
 OUT = os.environ.get("QP_OUT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "out"))  # outputs
-E = OUT + "/emu/"
+EMU = OUT + "/emu/"
 pts = {}
-for f in sorted(glob.glob(E + "quirk_m*_L*.npz")) + sorted(glob.glob(E + "quirkb_m*_L*.npz")):  # quirkb (bound filter) overrides
-    m, L = map(float, re.search(r"_m(\d+)_L([\d.]+)\.npz", f).groups())
-    d = np.load(f)
-    if int(d["nsim"]) == 0:
+for fname in (sorted(glob.glob(EMU + "quirk_m*_L*.npz"))
+              + sorted(glob.glob(EMU + "quirkb_m*_L*.npz"))):  # quirkb (bound filter) overrides
+    mass, lam = map(float, re.search(r"_m(\d+)_L([\d.]+)\.npz", fname).groups())
+    npz = np.load(fname)
+    if int(npz["nsim"]) == 0:
         continue
-    k = {s: i for i, s in enumerate(d["keys"])}
-    x = d["data"]
-    ng = float(d["ngen"])
-    trig = x[:, k["trig"]]
-    pre = trig * (x[:, k["depth"]] >= S.NSTEP)
-    ion = sum(v.sum() for v in S.bins(f).values())
-    cm = (x[:, k["depth"]] >= S.NSTEP)
-    pts[(int(m), L)] = dict(trig=trig.sum() / ng, pre=pre.sum() / ng, ion=ion,
-                            merged=float((x[cm, k["c_merged"]]).mean()) if cm.any() else 0., f=f)
-lams = sorted({k[1] for k in pts})
+    col = {name: pos for pos, name in enumerate(npz["keys"])}
+    arr = npz["data"]
+    ng = float(npz["ngen"])
+    trig = arr[:, col["trig"]]
+    pre = trig * (arr[:, col["depth"]] >= summarize.NSTEP)
+    ion = sum(vals.sum() for vals in summarize.bins(fname).values())
+    cm = (arr[:, col["depth"]] >= summarize.NSTEP)
+    pts[(int(mass), lam)] = dict(trig=trig.sum() / ng, pre=pre.sum() / ng, ion=ion,
+                                 merged=float((arr[cm, col["c_merged"]]).mean()) if cm.any() else 0., f=fname)
+lams = sorted({pt[1] for pt in pts})
 print("points:", len(pts), "lambdas:", lams)
-P.label("13 TeV")
+pstyle.label("13 TeV")
 for key, yt, stem in (("trig", "Trigger efficiency", "sig_trig"), ("pre", "Trigger and preselection efficiency", "sig_presel"),
                       ("ion", "Signal efficiency, ionization method", "sig_ion")):
-    c = P.canvas("c_" + key, 0.5, 5e4, 1e-4, 2., "#Lambda [eV]", yt, logy=True, logx=True, iPos=0)
-    lg = P.legend(0.65, 0.70, 0.93, 0.88, 0.032)
-    for i, m in enumerate((200, 600, 1000, 1400)):
-        xs = [L for L in lams if (m, L) in pts]
+    canv = pstyle.canvas("c_" + key, 0.5, 5e4, 1e-4, 2., "#Lambda [eV]", yt, logy=True, logx=True, iPos=0)
+    lg = pstyle.legend(0.65, 0.70, 0.93, 0.88, 0.032)
+    for idx, mass in enumerate((200, 600, 1000, 1400)):
+        xs = [lam for lam in lams if (mass, lam) in pts]
         if not xs:
             continue
-        g = P.graph(xs, [max(pts[(m, L)][key], 1.1e-4) for L in xs])
-        g.SetLineColor(P.COLORS[i])
-        g.SetMarkerColor(P.COLORS[i])
-        g.SetLineWidth(2)
-        g.SetMarkerStyle(20)
-        g.Draw("LP same")
-        lg.AddEntry(g, "m_{Q} = %d GeV" % m, "lp")
+        gr = pstyle.graph(xs, [max(pts[(mass, lam)][key], 1.1e-4) for lam in xs])
+        gr.SetLineColor(pstyle.COLORS[idx])
+        gr.SetMarkerColor(pstyle.COLORS[idx])
+        gr.SetLineWidth(2)
+        gr.SetMarkerStyle(20)
+        gr.Draw("LP same")
+        lg.AddEntry(gr, "m_{Q} = %d GeV" % mass, "lp")
     lg.Draw()
-    P.save(c, stem)
-for m in (200, 600, 1000, 1400):
-    print(m, " ".join("L%g:trig %.3f pre %.3f ion %.3f merged %.2f" % (L, pts[(m, L)]["trig"], pts[(m, L)]["pre"], pts[(m, L)]["ion"], pts[(m, L)]["merged"]) for L in lams if (m, L) in pts))
+    pstyle.save(canv, stem)
+for mass in (200, 600, 1000, 1400):
+    print(mass, " ".join("L%g:trig %.3f pre %.3f ion %.3f merged %.2f" % (
+        lam, pts[(mass, lam)]["trig"], pts[(mass, lam)]["pre"], pts[(mass, lam)]["ion"], pts[(mass, lam)]["merged"])
+        for lam in lams if (mass, lam) in pts))
 
 # Gstrip of the selected candidates at 1 TeV
-c = P.canvas("c_gs", 0., 1., 0., 0.5, "G_{i}^{Strips}", "Fraction of selected candidates", iPos=0)
-lg = P.legend(0.20, 0.66, 0.60, 0.88, 0.032)
-for i, L in enumerate([L for L in (1., 100., 1000., 10000.) if (1000, L) in pts]):
-    d = np.load(pts[(1000, L)]["f"])
-    k = {s: j for j, s in enumerate(d["keys"])}
-    x = d["data"]
-    s = (x[:, k["depth"]] >= S.NSTEP) & (x[:, k["c_pt"]] > 200)
-    if s.sum() == 0:
+canv = pstyle.canvas("c_gs", 0., 1., 0., 0.5, "G_{i}^{Strips}", "Fraction of selected candidates", iPos=0)
+lg = pstyle.legend(0.20, 0.66, 0.60, 0.88, 0.032)
+for idx, lam in enumerate([lam for lam in (1., 100., 1000., 10000.) if (1000, lam) in pts]):
+    npz = np.load(pts[(1000, lam)]["f"])
+    col = {name: pos for pos, name in enumerate(npz["keys"])}
+    arr = npz["data"]
+    sel = (arr[:, col["depth"]] >= summarize.NSTEP) & (arr[:, col["c_pt"]] > 200)
+    if sel.sum() == 0:
         continue
-    h = P.hist("hgs%d" % i, x[s, k["c_gstrip"]], 20, 0., 1., x[s, k["trig"]])
-    h.Scale(1. / max(h.Integral(), 1e-9))
-    h.SetLineColor(P.COLORS[i])
-    h.SetLineWidth(2)
-    h.Draw("hist same")
-    lg.AddEntry(h, "#Lambda = %g eV" % L, "l")
+    histo = pstyle.hist("hgs%d" % idx, arr[sel, col["c_gstrip"]], 20, 0., 1., arr[sel, col["trig"]])
+    histo.Scale(1. / max(histo.Integral(), 1e-9))
+    histo.SetLineColor(pstyle.COLORS[idx])
+    histo.SetLineWidth(2)
+    histo.Draw("hist same")
+    lg.AddEntry(histo, "#Lambda = %g eV" % lam, "l")
 lg.Draw()
-P.note("m_{Q} = 1 TeV, p_{T} > 200 GeV", 0.20, 0.60)
-P.save(c, "sig_gstrip")
+pstyle.note("m_{Q} = 1 TeV, p_{T} > 200 GeV", 0.20, 0.60)
+pstyle.save(canv, "sig_gstrip")
