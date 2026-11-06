@@ -29,7 +29,7 @@ namespace {
 
 QuirkMessenger::QuirkMessenger(QuirkConfig& cfg) : m_cfg(cfg) {
   m_dir = std::make_unique<G4UIdirectory>("/quirk/");
-  m_dir->SetGuidance("Quirk parameters (defaults of g4SimHits_cfi.py); PreInit only.");
+  m_dir->SetGuidance("Quirk parameters; PreInit only.");
 
   auto add = [this](G4UIcommand* c) { m_cmds.emplace_back(c); };
   add(dimCmd(this, "/quirk/mass", "Quirk mass (> 0 enables quirks).", "GeV", "Energy"));
@@ -47,7 +47,7 @@ QuirkMessenger::QuirkMessenger(QuirkConfig& cfg) : m_cfg(cfg) {
   }
   {
     auto c = withStates(new G4UIcmdWithADouble("/quirk/maxBoost", this));
-    c->SetGuidance("Max rapidity change per step (CMSSW 0.1, Athena 0.01).");
+    c->SetGuidance("Max rapidity change per step (default 0.1).");
     c->SetParameterName("maxBoost", false);
     c->SetRange("maxBoost>0 && maxBoost<1");
     add(c);

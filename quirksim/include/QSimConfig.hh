@@ -20,7 +20,7 @@ struct QSimConfig {
   std::string genMode{"gun"};
   std::string hepmcFile;
   G4bool quirksOnly{false};  // pass only the quirks of the HepMC/Pythia event to Geant4
-  G4double etaMax{5.5};      // CMSSW Generator eta cut
+  G4double etaMax{5.5};      // generator eta cut
   G4int skipEvents{0};
   G4ThreeVector gunP1{100. * CLHEP::GeV, -60. * CLHEP::GeV, 1. * CLHEP::GeV};
   G4ThreeVector gunP2{50. * CLHEP::GeV, 60. * CLHEP::GeV, 1. * CLHEP::GeV};
@@ -32,7 +32,7 @@ struct QSimConfig {
   G4int pythiaSeed{12345};  // + thread id
 
   // tracking
-  G4double maxTime{500. * CLHEP::ns};  // CMSSW MaxTrackTime, all tracks (<= 0: none)
+  G4double maxTime{500. * CLHEP::ns};  // maximum track time, all tracks (<= 0: none)
   G4bool killSecondaries{false};       // quirks only, no showers
 
   // output

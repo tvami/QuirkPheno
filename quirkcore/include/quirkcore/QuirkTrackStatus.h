@@ -3,7 +3,7 @@
 #ifndef QUIRKCORE_QuirkTrackStatus_H
 #define QUIRKCORE_QuirkTrackStatus_H
 
-// Stand-in for the CMSSW MCTruthUtil helpers used by the quirk code.
+// Track status helpers used by the quirk code.
 
 #include "G4Track.hh"
 #include "G4TrackStatus.hh"

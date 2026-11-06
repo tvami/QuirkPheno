@@ -53,7 +53,7 @@ QSimMessenger::QSimMessenger() {
   str("/qsim/card", "Detector card file.", true);
   str("/qsim/physList", "Reference physics list name (G4PhysListFactory).", true);
   dim("/qsim/prodCut", "Default production cut.", "mm", true);
-  dim("/qsim/maxTime", "Kill all tracks after this global time (CMSSW MaxTrackTime; <= 0: never).", "ns");
+  dim("/qsim/maxTime", "Kill all tracks after this global time (<= 0: never).", "ns");
   flag("/qsim/killSecondaries", "Kill all secondaries (quirks only).");
 
   str("/qsim/gen/mode", "gun | hepmc | pythia");

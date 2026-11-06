@@ -16,7 +16,7 @@ namespace Pythia8 {
 }
 
 // Drell-Yan pair of the fourth-generation lepton (PDG 17) through gamma*/Z
-// (process 141 with Zprime:gmZmode = 4), as the CMSSW quirk fragment;
+// (process 141 with Zprime:gmZmode = 4);
 // mass and seed are set here, the rest comes from the settings file.
 #ifdef QSIM_WITH_PYTHIA8
 std::unique_ptr<Pythia8::Pythia> makeQuirkPythia(int seedOffset);

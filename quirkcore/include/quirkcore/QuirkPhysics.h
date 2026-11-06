@@ -5,7 +5,7 @@
 
 // Quirk physics: the quirk/antiquirk definitions and their processes
 // (QuirkTransportation, hadron-like EM energy loss, QuirkWatcher).
-// Standalone version of the CMSSW CMSQuirkPhysics, configured by QuirkConfig.
+// Configured by QuirkConfig.
 
 #include "quirkcore/QuirkConfig.h"
 

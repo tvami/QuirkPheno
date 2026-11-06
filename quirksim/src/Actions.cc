@@ -279,7 +279,7 @@ void SteppingAction::quirkStep(const G4Step* step, int i) {
   ++Q.steps;
   ++m_ev->stepCount[i];
   G4TrackStatus status = t->GetTrackStatus();
-  // CMSSW MaxTrackTime also applies to quirks; EndTracking frees the partner
+  // the maximum track time also applies to quirks; EndTracking frees the partner
   if (c.maxTime > 0 && post->GetGlobalTime() > c.maxTime && status != fStopAndKill) {
     t->SetTrackStatus(fStopAndKill);
     status = fStopAndKill;

@@ -3,8 +3,7 @@
 #ifndef QUIRKCORE_QuirkConfig_H
 #define QUIRKCORE_QuirkConfig_H
 
-// Quirk parameters, in place of the g4SimHits.Physics PSet of CMSSW.
-// Defaults are those of g4SimHits_cfi.py; values are in Geant4 internal units.
+// Quirk parameters, set by the /quirk/ macro commands; values are in Geant4 internal units.
 
 #include "globals.hh"
 #include <CLHEP/Units/SystemOfUnits.h>

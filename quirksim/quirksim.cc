@@ -1,4 +1,4 @@
-// quirksim: quirk pairs through a parametric cylindrical detector (Geant4, no CMSSW).
+// quirksim: quirk pairs through a parametric cylindrical detector (Geant4).
 //
 // usage: quirksim -m run.mac [-t threads] [-n events] [-s seed] [-o out.root] [--mt]
 //
