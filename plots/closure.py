@@ -17,7 +17,7 @@ BASE = OUT + "/"
 PUB = os.path.join(qreco.HEPDATA, "ioniz", "AllCardsOnly")
 LUMI = 101.0e3
 cy = json.load(open(os.path.join(qreco.HERE, "card_yields.json")))
-MS = [800, 1000, 1400, 1800, 2200]  # 2.6 TeV dropped: flat pedestal in the HEPData template
+MS = [800, 1000, 1400, 1800, 2200]
 
 
 def lim(fn):
