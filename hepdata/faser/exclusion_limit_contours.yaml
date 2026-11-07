@@ -1,0 +1,114 @@
+dependent_variables:
+- header: {name: Expected excluded quirk mass at 95% CL, units: GeV}
+  qualifiers: &id001
+  - {name: SQRT(S), units: TeV, value: 13.6}
+  - {name: LUMINOSITY, units: fb^-1, value: 186.3}
+  - {name: N_IC, value: 2}
+  values:
+  - {value: 56.33}
+  - {value: 71.5}
+  - {value: 103.67}
+  - {value: 109.71}
+  - {value: 146.75}
+  - {value: 160.46}
+  - {value: 170}
+  - {value: 173}
+  - {value: 177}
+  - {value: 173}
+  - {value: 170}
+  - {value: 155.29}
+  - {value: 137.03}
+  - {value: 118.51}
+  - {value: 102.39}
+  - {value: 91.98}
+  - {value: 72.5}
+  - {value: 68}
+  - {value: 65}
+- header: {name: 'Expected excluded quirk mass at 95% CL, +1 sigma', units: GeV}
+  qualifiers: *id001
+  values:
+  - {value: 60}
+  - {value: 78}
+  - {value: 113.91}
+  - {value: 127.78}
+  - {value: 155.67}
+  - {value: 173.32}
+  - {value: 180}
+  - {value: 187}
+  - {value: 192}
+  - {value: 190}
+  - {value: 185}
+  - {value: 168.03}
+  - {value: 151.38}
+  - {value: 136.3}
+  - {value: 119.72}
+  - {value: 112.51}
+  - {value: 103.76}
+  - {value: 82}
+  - {value: 74}
+- header: {name: 'Expected excluded quirk mass at 95% CL, -1 sigma', units: GeV}
+  qualifiers: *id001
+  values:
+  - {value: 52.49}
+  - {value: 60}
+  - {value: 81.05}
+  - {value: 90}
+  - {value: 133.42}
+  - {value: 146.33}
+  - {value: 153}
+  - {value: 159}
+  - {value: 162}
+  - {value: 160}
+  - {value: 158}
+  - {value: 138.9}
+  - {value: 118.05}
+  - {value: 101}
+  - {value: 67.88}
+  - {value: 67.5}
+  - {value: 49}
+  - {value: 45}
+  - {value: 40}
+- header: {name: Observed excluded quirk mass at 95% CL, units: GeV}
+  qualifiers: *id001
+  values:
+  - {value: 57.32}
+  - {value: 72.5}
+  - {value: 106}
+  - {value: 113}
+  - {value: 149.1}
+  - {value: 162.58}
+  - {value: 172}
+  - {value: 175}
+  - {value: 179}
+  - {value: 175}
+  - {value: 173}
+  - {value: 157.8}
+  - {value: 139.7}
+  - {value: 117.04}
+  - {value: 104.17}
+  - {value: 95.98}
+  - {value: 77}
+  - {value: 71}
+  - {value: 66}
+independent_variables:
+- header: {name: Infra-color confinement scale Lambda, units: eV}
+  values:
+  - {value: 300.0}
+  - {value: 500.0}
+  - {value: 750.0}
+  - {value: 1000.0}
+  - {value: 1700.0}
+  - {value: 3000.0}
+  - {value: 5000.0}
+  - {value: 7500.0}
+  - {value: 10000.0}
+  - {value: 17000.0}
+  - {value: 30000.0}
+  - {value: 50000.0}
+  - {value: 65000.0}
+  - {value: 75000.0}
+  - {value: 85000.0}
+  - {value: 90000.0}
+  - {value: 95000.0}
+  - {value: 100000.0}
+  - {value: 105000.0}
